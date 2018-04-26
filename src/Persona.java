@@ -14,12 +14,13 @@ public class Persona extends PersonaAPP.PersonaPOA{
         
         boolean resultado=false;
         try {
-            String query = "insert into persona(id,cedula,nombre,apellido,telefono)" + "values ("+id+","+nombre+","+apellido+","+telefono+")";
+            String query = "insert into persona(id,cedula,nombre,apellido,telefono)" + "values ('"+id+"','"+cedula+"','"+nombre+"','"+apellido+"','"+telefono+"')";
             conex.conexion();
             Statement st = conex.conex.createStatement();
             int valor = st.executeUpdate(query);
             if (valor > 0) {
                 resultado = true;
+                JOptionPane.showMessageDialog(null, "Datos insertados");
             }
             //cerramos los recursos.
             st.close();
