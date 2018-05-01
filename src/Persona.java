@@ -33,7 +33,26 @@ public class Persona extends PersonaAPP.PersonaPOA{
 
     @Override
     public String consultarPersona(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String resultado = "";
+        try {
+            String query = "Select * from persona WHERE id ="+ id;
+            conex.conexion();
+            Statement st = conex.conex.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                resultado += rs.getLong(2) + " - " 
+                            + rs.getString(3) + " - " 
+                            + rs.getString(4) + " - " 
+                            + rs.getLong(5) + "\n" ;
+            }
+            //cerramos los recursos.
+            st.close();
+            rs.close();
+            conex.conex.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Ocurrió un error" +e.getMessage());
+        }
+        return resultado;
     }
 
     @Override
@@ -48,7 +67,27 @@ public class Persona extends PersonaAPP.PersonaPOA{
 
     @Override
     public String listarPersona() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String resultado = "";
+        try {
+            String query = "Select * from persona";    
+            conex.conexion();
+            Statement st = conex.conex.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                resultado += rs.getLong(2) + " - " 
+                            + rs.getString(3) + " - " 
+                            + rs.getString(4) + " - " 
+                            + rs.getLong(5) + "\n" ;
+            }
+            //cerramos los recursos.
+            st.close();
+            rs.close();
+            conex.conex.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Ocurrió un error" +e.getMessage());
+        }
+        
+        return resultado;
     }
 
     @Override
