@@ -57,12 +57,44 @@ public class Persona extends PersonaAPP.PersonaPOA{
 
     @Override
     public boolean eliminarPersona(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        boolean resultado=false;
+        try {
+            String query = "Delete from persona WHERE id ="+ id;
+            conex.conexion();
+            Statement st = conex.conex.createStatement();
+            int valor = st.executeUpdate(query);
+            if (valor > 0) {
+                resultado = true;
+            }
+            //cerramos los recursos.
+            st.close();
+            conex.conex.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"ocurrió un error" +e.getMessage());
+        }
+        return resultado;      
+        
     }
 
     @Override
     public boolean actualizarPersona(int id, int cedula, String nombre, String apellido, int telefono) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         boolean resultado=false;
+        try {
+            String query = "update persona set cedula = '"+cedula+"',nombre ='"+nombre+"',apellido = '"+apellido+"',telefono = '"+telefono+"' where id = "+id;
+            conex.conexion();
+            Statement st = conex.conex.createStatement();
+            int valor = st.executeUpdate(query);
+            if (valor > 0) {
+                resultado = true;
+            }
+            //cerramos los recursos.
+            st.close();
+            conex.conex.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"ocurrió un error" +e.getMessage());
+        }
+        return resultado;
     }
 
     @Override
