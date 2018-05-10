@@ -126,5 +126,20 @@ public class Persona extends PersonaAPP.PersonaPOA{
     public void shutdown() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public ResultSet listaEstados(){
+        ResultSet resultado = null;
+          try {
+            String query = "Select id; nombre from estado";
+            conex.conexion();
+            Statement st = conex.conex.createStatement();
+            resultado = st.executeQuery(query);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Ocurrió un error"+ e.getMessage());
+        }
+           
+        return resultado;
+    }
          
 }
