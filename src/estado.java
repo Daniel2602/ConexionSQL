@@ -23,4 +23,9 @@ public class estado {
         this.nombre = nombre;
     }
     
+    public String toString()
+    {
+    return nombre;
+    }
+    
 }

@@ -130,7 +130,7 @@ public class Persona extends PersonaAPP.PersonaPOA{
     public ResultSet listaEstados(){
         ResultSet resultado = null;
           try {
-            String query = "Select id; nombre from estado";
+            String query = "Select id, nombre from estado";
             conex.conexion();
             Statement st = conex.conex.createStatement();
             resultado = st.executeQuery(query);
@@ -139,6 +139,19 @@ public class Persona extends PersonaAPP.PersonaPOA{
             JOptionPane.showMessageDialog(null,"Ocurrió un error"+ e.getMessage());
         }
            
+        return resultado;
+    }
+        public ResultSet cargarTablaPersona() {
+        ResultSet resultado = null;
+        try {
+            String query = "Select id, nombre, apellido from persona";    
+            conex.conexion();
+            Statement st = conex.conex.createStatement();
+            resultado = st.executeQuery(query);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Ocurrió un error" +e.getMessage());
+        }
+        
         return resultado;
     }
          
